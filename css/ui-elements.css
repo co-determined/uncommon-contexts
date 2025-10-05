@@ -1,0 +1,317 @@
+/* UI Elements for Enhanced Reading Experience
+   Minimal, unobtrusive interface elements that appear only when needed */
+
+/* ═══════════════════════════════════════════════════════════════════
+   FOCUS MODE TOGGLE BUTTON
+   ═══════════════════════════════════════════════════════════════════ */
+
+.focus-mode-toggle {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.3;
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.focus-mode-toggle:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+body.focus-mode .focus-mode-toggle {
+  opacity: 1;
+  background: var(--accent-burgundy);
+  color: var(--bg-primary);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   TOAST NOTIFICATIONS
+   ═══════════════════════════════════════════════════════════════════ */
+
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   KEYBOARD HELP OVERLAY
+   ═══════════════════════════════════════════════════════════════════ */
+
+.keyboard-help {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s ease;
+}
+
+.keyboard-help-content {
+  background: var(--bg-primary);
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 400px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.keyboard-help h3 {
+  margin: 0 0 1rem 0;
+  color: var(--accent-burgundy);
+}
+
+.keyboard-help dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1rem;
+  margin: 0;
+}
+
+.keyboard-help dt {
+  font-family: monospace;
+  background: var(--code-bg);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.keyboard-help dd {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+}
+
+.keyboard-help p {
+  margin: 1rem 0 0 0;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   IMAGE OVERLAY (LIGHTBOX)
+   ═══════════════════════════════════════════════════════════════════ */
+
+.image-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  cursor: zoom-out;
+  animation: fadeIn 0.3s ease;
+  padding: 2rem;
+}
+
+.image-overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* Image loading states */
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-wrapper img.loading {
+  filter: blur(5px);
+  transform: scale(1.1);
+}
+
+.image-wrapper img.loaded {
+  animation: unblur 0.5s ease;
+}
+
+@keyframes unblur {
+  from {
+    filter: blur(5px);
+    transform: scale(1.1);
+  }
+  to {
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   READING TIME INDICATOR
+   ═══════════════════════════════════════════════════════════════════ */
+
+.reading-time {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   HIGHLIGHT ANIMATION (for anchor targets)
+   ═══════════════════════════════════════════════════════════════════ */
+
+.highlight {
+  animation: highlight 2s ease;
+}
+
+@keyframes highlight {
+  0% {
+    background: transparent;
+  }
+  20% {
+    background: rgba(212, 165, 116, 0.2);
+  }
+  100% {
+    background: transparent;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   TABLE OF CONTENTS (Sticky)
+   ═══════════════════════════════════════════════════════════════════ */
+
+.toc {
+  position: sticky;
+  top: 2rem;
+  float: right;
+  width: var(--sidenote-width);
+  margin-right: calc(-1 * var(--sidenote-width) - 2rem);
+  margin-left: 2rem;
+  padding: 1rem;
+  background: var(--bg-primary);
+  border-left: 2px solid var(--border-subtle);
+  font-size: 0.875rem;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+}
+
+.toc h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+}
+
+.toc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc li {
+  margin: 0.25rem 0;
+}
+
+.toc a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: block;
+  padding: 0.25rem 0;
+}
+
+.toc a:hover,
+.toc a.active {
+  color: var(--accent-burgundy);
+  padding-left: 0.5rem;
+}
+
+@media (max-width: 1400px) {
+  .toc {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   FONT SIZE CONTROLS
+   ═══════════════════════════════════════════════════════════════════ */
+
+.font-controls {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  display: flex;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 100;
+}
+
+body:hover .font-controls {
+  opacity: 0.3;
+}
+
+.font-controls:hover {
+  opacity: 1;
+}
+
+.font-controls button {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-primary);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.font-controls button:hover {
+  background: var(--accent-sage);
+  color: var(--bg-primary);
+  transform: scale(1.1);
+}
+
+/* Font size variations */
+body.font-small { font-size: 16px; }
+body.font-medium { font-size: 18px; } /* default */
+body.font-large { font-size: 20px; }
+body.font-xlarge { font-size: 22px; }

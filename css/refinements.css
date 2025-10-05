@@ -1,0 +1,371 @@
+/* Refinements: Where Design Disappears into Pure Reading
+   Inspired by Jobs (simplicity), Tufte (information design), Wright (organic architecture) */
+
+/* ═══════════════════════════════════════════════════════════════════
+   OPTIMAL READING RHYTHM - The Foundation
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Baseline Grid: Everything aligns to 8px rhythm */
+:root {
+  --baseline: 1.75rem;  /* 28px at 18px font - golden ratio */
+  --reading-width: 38em;  /* ~65 characters - optimal reading */
+  --sidenote-width: 18em;
+  --full-width: calc(var(--reading-width) + var(--sidenote-width) + 4rem);
+}
+
+/* Perfect Paragraph Rhythm */
+.content p {
+  margin-bottom: var(--baseline);
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;
+  hyphenate-limit-lines: 2;
+  hyphenate-limit-last: always;
+  hanging-punctuation: first allow-end;
+}
+
+/* Widow/Orphan Control */
+.content p {
+  widows: 3;
+  orphans: 3;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   TUFTE-STYLE SIDENOTES - Content Where It Belongs
+   ═══════════════════════════════════════════════════════════════════ */
+
+.sidenote-wrapper {
+  position: relative;
+  max-width: var(--reading-width);
+  margin: 0 auto;
+}
+
+.sidenote {
+  float: right;
+  clear: right;
+  margin-right: calc(-1 * var(--sidenote-width) - 2rem);
+  width: var(--sidenote-width);
+  margin-top: 0.3rem;
+  margin-bottom: 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  vertical-align: baseline;
+  position: relative;
+  color: var(--text-secondary);
+}
+
+.sidenote-number {
+  counter-increment: sidenote-counter;
+}
+
+.sidenote-number:after,
+.sidenote:before {
+  position: relative;
+  vertical-align: baseline;
+  color: var(--accent-burgundy);
+  font-size: 0.75rem;
+}
+
+.sidenote-number:after {
+  content: counter(sidenote-counter);
+  top: -0.5rem;
+}
+
+.sidenote:before {
+  content: counter(sidenote-counter) " ";
+  top: -0.5rem;
+  margin-right: 0.25rem;
+}
+
+/* Mobile: Sidenotes become toggle-able margin notes */
+@media (max-width: 1200px) {
+  .sidenote {
+    float: none;
+    margin: 1rem 0;
+    width: 100%;
+    border-left: 3px solid var(--accent-sage);
+    padding-left: 1rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   JOBS-STYLE MICRO INTERACTIONS - Invisible Magic
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Links that breathe */
+.content a {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  text-decoration-skip-ink: auto;
+}
+
+.content a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    var(--accent-burgundy) 0%, 
+    var(--accent-amber) 50%,
+    var(--accent-burgundy) 100%);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.content a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Drop Caps - Illuminated Manuscript Style */
+.content > p:first-of-type::first-letter {
+  float: left;
+  font-size: 4.5rem;
+  line-height: 0.8;
+  margin: 0.13em 0.05em 0 -0.05em;
+  color: var(--accent-burgundy);
+  font-weight: 600;
+  text-shadow: 2px 2px 0 rgba(139, 38, 53, 0.1);
+}
+
+/* Smart Quotes */
+blockquote {
+  position: relative;
+  margin: calc(var(--baseline) * 2) 0;
+  padding-left: 3rem;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+blockquote::before {
+  content: '"';
+  position: absolute;
+  left: -0.5rem;
+  top: -1.5rem;
+  font-size: 6rem;
+  color: var(--accent-sage);
+  opacity: 0.3;
+  font-family: Georgia, serif;
+}
+
+/* Pull Quotes */
+.pull-quote {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  margin: calc(var(--baseline) * 2) -4rem;
+  padding: var(--baseline) 0;
+  text-align: center;
+  color: var(--accent-burgundy);
+  font-weight: 300;
+  font-style: italic;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   WRIGHT-STYLE ORGANIC FLOW - Natural Architecture
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Horizontal emphasis - Prairie style */
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, 
+    transparent,
+    var(--border-subtle) 20%,
+    var(--border-subtle) 80%,
+    transparent);
+  margin: calc(var(--baseline) * 2) 0;
+}
+
+/* Section transitions */
+.content section {
+  position: relative;
+  padding: calc(var(--baseline) * 2) 0;
+}
+
+.content section::before {
+  content: '※';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  color: var(--accent-sage);
+  font-size: 1.5rem;
+  opacity: 0.5;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   READING PROGRESS - Subtle Wayfinding
+   ═══════════════════════════════════════════════════════════════════ */
+
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.reading-progress.visible {
+  opacity: 1;
+}
+
+.reading-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, 
+    var(--accent-burgundy),
+    var(--accent-amber));
+  transform-origin: left;
+  transition: transform 0.1s linear;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   FOCUS MODE - Zen Reading
+   ═══════════════════════════════════════════════════════════════════ */
+
+body.focus-mode .content p,
+body.focus-mode .content h1,
+body.focus-mode .content h2,
+body.focus-mode .content h3,
+body.focus-mode .content blockquote,
+body.focus-mode .content ul,
+body.focus-mode .content ol {
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+body.focus-mode .content p:hover,
+body.focus-mode .content *:focus-within {
+  opacity: 1;
+}
+
+/* Current paragraph in focus mode */
+body.focus-mode .content .in-focus {
+  opacity: 1;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(250, 248, 245, 0.5) 10%,
+    rgba(250, 248, 245, 0.5) 90%,
+    transparent
+  );
+  margin-left: -1rem;
+  padding-left: 1rem;
+  margin-right: -1rem;
+  padding-right: 1rem;
+  border-radius: 4px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   DARK MODE - Reading by Candlelight
+   ═══════════════════════════════════════════════════════════════════ */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #1a1815;        /* Warm black */
+    --text-primary: #e8e2d5;       /* Warm white */
+    --text-secondary: #a8a095;     /* Muted warm gray */
+    --accent-burgundy: #d4626e;    /* Lighter burgundy for dark */
+    --accent-sage: #7a8a6e;        /* Adjusted sage */
+    --accent-amber: #e6b888;       /* Warmer amber */
+    --border-subtle: #2a2825;      /* Subtle borders */
+    --code-bg: #252320;            /* Code background */
+  }
+
+  /* Candlelight glow effect */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      transparent 40%,
+      rgba(212, 165, 116, 0.02) 70%,
+      rgba(212, 98, 110, 0.03) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+    animation: flicker 4s infinite;
+  }
+
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.95; }
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   PRINT STYLESHEET - Coffee Table Book Quality
+   ═══════════════════════════════════════════════════════════════════ */
+
+@media print {
+  body {
+    font-size: 11pt;
+    line-height: 1.6;
+    color: #000;
+    background: white;
+  }
+
+  .content {
+    max-width: none;
+    margin: 0;
+  }
+
+  /* Beautiful page breaks */
+  h1, h2 {
+    page-break-after: avoid;
+  }
+
+  p {
+    widows: 3;
+    orphans: 3;
+  }
+
+  /* Print sidenotes as endnotes */
+  .sidenote {
+    display: none;
+  }
+
+  .sidenote-number::after {
+    content: " [" counter(sidenote-counter) "]";
+    font-size: 0.8em;
+    vertical-align: super;
+  }
+
+  /* Add URL after links */
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   PERFORMANCE OPTIMIZATIONS
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Enable GPU acceleration for smooth animations */
+.reading-progress-bar,
+.content a::after,
+body::before {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Font display optimization */
+@font-face {
+  font-display: swap; /* Show fallback immediately */
+}
