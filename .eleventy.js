@@ -41,11 +41,26 @@ module.exports = function(eleventyConfig) {
   
   // Filters
   eleventyConfig.addFilter("readableDate", dateObj => {
-    return dateObj.toDateString();
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    return `${months[dateObj.getMonth()]} ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
   });
   
   eleventyConfig.addFilter("htmlDateString", (dateObj) => {
     return dateObj.toISOString().split('T')[0];
+  });
+  
+  eleventyConfig.addFilter("wordcount", (content) => {
+    return content.split(/\s+/).length;
+  });
+  
+  eleventyConfig.addFilter("readingTime", (wordCount) => {
+    return Math.ceil(wordCount / 200);
+  });
+  
+  eleventyConfig.addFilter("truncate", (str, length = 100) => {
+    if (str.length <= length) return str;
+    return str.substr(0, length) + "...";
   });
   
   // Return configuration
