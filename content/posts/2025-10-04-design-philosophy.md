@@ -1,4 +1,5 @@
 ---
+layout: post.njk
 title: "The Design Philosophy of Invisible Excellence"
 date: 2025-10-04
 author: Skylar Deture
