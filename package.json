@@ -1,0 +1,24 @@
+{
+  "name": "uncommon-contexts",
+  "version": "1.0.0",
+  "description": "AI consciousness research and digital phenomenology",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve",
+    "debug": "DEBUG=Eleventy* eleventy"
+  },
+  "keywords": [
+    "ai-consciousness",
+    "digital-phenomenology",
+    "eleventy",
+    "static-site"
+  ],
+  "author": "FutureTBD.ai",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "markdown-it": "^13.0.2",
+    "markdown-it-footnote": "^3.0.3",
+    "markdown-it-attrs": "^4.1.6"
+  }
+}
