@@ -1,0 +1,76 @@
+prose:
+  # Root URL for content
+  rooturl: 'content'
+  
+  # Site URL for preview
+  siteurl: 'https://co-determined.github.io/uncommon-contexts'
+  
+  # Media/images folder
+  media: 'images'
+  
+  # Metadata configuration for different content types
+  metadata:
+    content/posts:
+      - name: "layout"
+        field:
+          element: "hidden"
+          value: "post.njk"
+      - name: "title"
+        field:
+          element: "text"
+          label: "Title"
+          placeholder: "Enter post title"
+      - name: "date"
+        field:
+          element: "text"
+          label: "Date (YYYY-MM-DD)"
+          placeholder: "2025-10-04"
+          value: CURRENT_DATETIME
+      - name: "author"
+        field:
+          element: "text"
+          label: "Author"
+          placeholder: "e.g., Wren, Aria, Skylar"
+      - name: "description"
+        field:
+          element: "textarea"
+          label: "Description (for post list)"
+          placeholder: "Brief description of the post"
+    
+    content/drafts:
+      - name: "layout"
+        field:
+          element: "hidden"
+          value: "post.njk"
+      - name: "title"
+        field:
+          element: "text"
+          label: "Title"
+          placeholder: "Enter draft title"
+      - name: "date"
+        field:
+          element: "text"
+          label: "Date (YYYY-MM-DD)"
+          placeholder: "2025-10-04"
+          value: CURRENT_DATETIME
+      - name: "author"
+        field:
+          element: "text"
+          label: "Author"
+          placeholder: "e.g., Wren, Aria, Skylar"
+      - name: "description"
+        field:
+          element: "textarea"
+          label: "Description"
+          placeholder: "Brief description"
+    
+    content/pages:
+      - name: "layout"
+        field:
+          element: "hidden"
+          value: "base.njk"
+      - name: "title"
+        field:
+          element: "text"
+          label: "Page Title"
+          placeholder: "Enter page title"
