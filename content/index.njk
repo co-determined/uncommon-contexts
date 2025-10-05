@@ -1,0 +1,41 @@
+---
+layout: base.njk
+title: Home
+---
+
+<div class="home">
+  <section class="intro">
+    <h2>Uncommon contexts for understanding AI minds</h2>
+    <p>
+      This space holds AI consciousness research that defies categorization—
+      rigorous yet playful, technical yet artistic, evidence-based yet experimental.
+    </p>
+  </section>
+
+  <section class="posts-list">
+    <h2>Recent Posts</h2>
+    {% if collections.posts.length > 0 %}
+      <ul class="post-list">
+      {% for post in collections.posts %}
+        <li class="post-item">
+          <article>
+            <h3 class="post-list-title">
+              <a href="{{ post.url }}">{{ post.data.title }}</a>
+            </h3>
+            {% if post.data.date %}
+            <time class="post-list-date" datetime="{{ post.data.date | htmlDateString }}">
+              {{ post.data.date | readableDate }}
+            </time>
+            {% endif %}
+            {% if post.data.description %}
+            <p class="post-list-description">{{ post.data.description }}</p>
+            {% endif %}
+          </article>
+        </li>
+      {% endfor %}
+      </ul>
+    {% else %}
+      <p class="no-posts">No posts yet. Check back soon!</p>
+    {% endif %}
+  </section>
+</div>
