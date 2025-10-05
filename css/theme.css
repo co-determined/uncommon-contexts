@@ -1,0 +1,167 @@
+/* UncommonContexts Theme: Vintage Academic meets Warm Minimalism
+   "Special Collections at Golden Hour" aesthetic */
+
+:root {
+  /* Base Colors */
+  --bg-primary: #FAF8F5;        /* Warm cream background */
+  --text-primary: #2B2B2B;       /* Warm charcoal text */
+  --text-secondary: #5A5A5A;     /* Lighter gray for metadata */
+  
+  /* Accent Colors */
+  --accent-burgundy: #8B2635;    /* Primary links, headings */
+  --accent-sage: #9BAA8F;        /* Subtle highlights, borders */
+  --accent-amber: #D4A574;       /* Special moments, hover states */
+  
+  /* Neutral Tones */
+  --border-subtle: #E8E4DE;      /* Dividers, rules */
+  --code-bg: #F2EFE8;            /* Code blocks, inline code */
+}
+
+/* Base styling - warm and inviting */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.8;
+}
+
+/* Headings with burgundy accent */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--accent-burgundy);
+}
+
+/* Site title stays grounded, not accented */
+.site-title,
+.site-title a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.site-title a:hover {
+  color: var(--accent-burgundy);
+  text-decoration: none;
+}
+
+/* Secondary text in muted tone */
+.post-date,
+.post-author,
+.post-list-date,
+.footer-content,
+.footer-meta,
+.site-tagline {
+  color: var(--text-secondary);
+}
+
+/* Links - the signature burgundy with sophisticated underline */
+a {
+  color: var(--accent-burgundy);
+  text-decoration-color: rgba(139, 38, 53, 0.4);
+}
+
+a:hover {
+  text-decoration-color: var(--accent-burgundy);
+  color: #6B1D28;
+}
+
+a:visited {
+  color: #6B1D28;
+}
+
+/* Navigation links with subtle border on hover */
+.site-nav a {
+  color: var(--text-primary);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.site-nav a:hover {
+  border-bottom-color: var(--accent-burgundy);
+  color: var(--text-primary);
+}
+
+/* Post list titles - darker, more grounded */
+.post-list-title a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.post-list-title a:hover {
+  color: var(--accent-burgundy);
+  text-decoration: underline;
+  text-decoration-color: rgba(139, 38, 53, 0.4);
+}
+
+/* Borders - warm and subtle */
+.site-header {
+  border-bottom-color: var(--border-subtle);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.post-header,
+.post-footer {
+  border-color: var(--border-subtle);
+}
+
+.post-item {
+  border-bottom-color: var(--border-subtle);
+  margin-bottom: 3rem;
+  padding-bottom: 2.5rem;
+}
+
+.site-footer {
+  border-top-color: var(--border-subtle);
+  background: var(--code-bg);
+}
+
+/* Code blocks - warm background */
+code {
+  background: var(--code-bg);
+}
+
+pre {
+  background: var(--code-bg);
+  border-left-color: var(--accent-sage);
+}
+
+/* Blockquotes - burgundy accent */
+blockquote {
+  border-left-color: var(--accent-burgundy);
+  color: var(--text-secondary);
+}
+
+/* Tables */
+th {
+  background: var(--code-bg);
+}
+
+th, td {
+  border-color: var(--border-subtle);
+}
+
+/* Horizontal rules */
+hr {
+  border-top-color: var(--border-subtle);
+}
+
+/* Enhanced spacing for breathing room */
+.intro {
+  margin-bottom: 3.5rem;
+}
+
+.posts-list h2 {
+  color: var(--accent-burgundy);
+}
+
+/* Footnotes styling */
+.footnotes {
+  border-top-color: var(--border-subtle);
+}
+
+/* Back link styling */
+.back-link {
+  color: var(--accent-burgundy);
+}
+
+.back-link:hover {
+  color: #6B1D28;
+}
